@@ -1,5 +1,6 @@
 
 
+<<<<<<< HEAD
 
 # import time
 import xlrd
@@ -32,10 +33,21 @@ def myFilter(ylst):
 	b,a = signal.butter(filter_order, wn, 'lowpass')
 	filted_data = list(signal.filtfilt(b, a, ylst))
 	return filted_data
+=======
+import numpy as pd
+import time
+import pandas as pd
+from pandas import Series,SparseDataFrame
+import matplotlib.pyplot as plt 
+
+# # 滤波模块
+# def myFilter()
+>>>>>>> e912e6a7b28364871a6048b3dfba01376a32bb78
 
 
 
 # # psd模块
+<<<<<<< HEAD
 def myPSD(yfilted):
 	fs = 1024  # 采样频率
 	noverlap = 50   # 50%的重叠
@@ -90,6 +102,14 @@ def myIntegration(start,end,ypsd):
 		# print(area)
 	return area
 
+=======
+# def myPSD()
+
+
+
+# # 数值积分模块
+# def myIntegration()
+>>>>>>> e912e6a7b28364871a6048b3dfba01376a32bb78
 
 
 # 画图
@@ -118,6 +138,7 @@ def myPlot(x,y):
 
 
 
+<<<<<<< HEAD
 # 读excel文件开始
 def myInputExcel(file_name):
 	df = pd.read_excel(file_name,usecols=[3,4]) # 读取指定列（第4,5列）
@@ -176,6 +197,23 @@ area = myIntegration(start,end,ypsd)
 area_all.append(area)
 
 print(area_all)
+=======
+# 读文件开始
+def myInput(file_name):
+	df = pd.read_excel(file_name,usecols=[3,4]) # 读取指定列（第4,5列）
+	x = list(df.iloc[0:,0])  # 剔除标题行，取横坐标-时间
+	y = list(df.iloc[0:,1])  # 剔除标题行，取纵坐标-加速度
+	myPlot(x,y)
+
+
+
+
+
+# 全局变量
+file_name = r'C:\Users\user\Desktop\汽车平顺性试验方法\加速度数据\123458#7Waveform_0.125s.XLS'
+
+myInput(file_name)
+>>>>>>> e912e6a7b28364871a6048b3dfba01376a32bb78
 
 
 
