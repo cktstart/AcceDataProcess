@@ -7,11 +7,7 @@ import matplotlib.pyplot as plt
 
 # ---------------取原始数据--------------
 
-<<<<<<< HEAD
 file_name = r'C:\Users\user\Desktop\汽车平顺性试验方法\加速度数据\10-6-003_Point19_filted_data.txt'
-=======
-file_name = r'C:\Users\user\Desktop\汽车平顺性试验方法\加速度数据\filted_data_2.txt'
->>>>>>> e912e6a7b28364871a6048b3dfba01376a32bb78
 
 # 将读取的数据标准化
 def format_data(row):
@@ -64,12 +60,9 @@ plt.figure(figsize=(20,8))
 # plt.subplot(212)
 [Pxx, freqs, line] = plt.psd(ylst, Fs=fs, window=window, noverlap=noverlap, NFFT=nfft, return_line=True)
 
-<<<<<<< HEAD
 print(type(Pxx))  # <class 'numpy.ndarray'>
 print(type(freqs))
 
-=======
->>>>>>> e912e6a7b28364871a6048b3dfba01376a32bb78
 # 将PSD结果数据存储，查看是否和LMS软件输出的一致
 
 # np.savez('./myTest_PSD_OutData.txt', Pxx, freqs)  #　.ｎpz格式的文件，不方便
@@ -108,10 +101,6 @@ plt.title(u"加速度PSD波形图(滤波后_0.125Hz)")
 # plt.savefig('./data_and_figure/psd_11.png')
 
 
-<<<<<<< HEAD
 # plt.show()
-=======
-plt.show()
->>>>>>> e912e6a7b28364871a6048b3dfba01376a32bb78
 
 

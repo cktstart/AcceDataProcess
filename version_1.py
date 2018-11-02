@@ -1,6 +1,5 @@
 
 
-<<<<<<< HEAD
 
 # import time
 import xlrd
@@ -33,21 +32,10 @@ def myFilter(ylst):
 	b,a = signal.butter(filter_order, wn, 'lowpass')
 	filted_data = list(signal.filtfilt(b, a, ylst))
 	return filted_data
-=======
-import numpy as pd
-import time
-import pandas as pd
-from pandas import Series,SparseDataFrame
-import matplotlib.pyplot as plt 
-
-# # 滤波模块
-# def myFilter()
->>>>>>> e912e6a7b28364871a6048b3dfba01376a32bb78
 
 
 
 # # psd模块
-<<<<<<< HEAD
 def myPSD(yfilted):
 	fs = 1024  # 采样频率
 	noverlap = 50   # 50%的重叠
@@ -102,14 +90,6 @@ def myIntegration(start,end,ypsd):
 		# print(area)
 	return area
 
-=======
-# def myPSD()
-
-
-
-# # 数值积分模块
-# def myIntegration()
->>>>>>> e912e6a7b28364871a6048b3dfba01376a32bb78
 
 
 # 画图
@@ -138,8 +118,7 @@ def myPlot(x,y):
 
 
 
-<<<<<<< HEAD
-# 读excel文件开始
+# 读excel文件
 def myInputExcel(file_name):
 	df = pd.read_excel(file_name,usecols=[3,4]) # 读取指定列（第4,5列）
 	xlst = list(df.iloc[0:,0])  # 剔除标题行，取横坐标-时间
@@ -159,61 +138,45 @@ def myInputTxt(file_name):
 		return ylst
 
 # 全局变量
-# file_name = r'C:\Users\user\Desktop\汽车平顺性试验方法\加速度数据\10-6-003_Point19_origin_data.asc'   # 原始数据excel文件
+file_name = r'C:\Users\user\Desktop\汽车平顺性试验方法\加速度数据\123458#7Waveform_8s.XLS'   # 原始数据excel文件
 freq_file = r'C:\Users\user\Desktop\汽车平顺性试验方法\13倍频带上下限频率.xlsx'    # 1/3倍频带上下限频率表
-# xlst,ylst = myInputExcel(file_name)
-# filted_data = myFilter(ylst)
-# xpsd,ypsd = myPSD(filted_data)
+xlst,ylst = myInputExcel(file_name)
+filted_data = myFilter(ylst)
+xpsd,ypsd = myPSD(filted_data)
 
-file_name = r'C:\Users\user\Desktop\汽车平顺性试验方法\加速度数据\10-6-003_Point19_origin_data.asc'   # 原始数据txt文件
-ylst = myInputTxt(file_name)
-xpsd,ypsd = myPSD(ylst)
+# 测试用
+# file_name = r'C:\Users\user\Desktop\汽车平顺性试验方法\加速度数据\10-6-003_Point19_origin_data.asc'   # 原始数据txt文件)
+# ylst = myInputTxt(file_name)
+# xpsd,ypsd = myPSD(ylst)
 
 # myPlot(xpsd, ypsd)
 
-k = 1   # 系数，在psd结果中取对应倍频分段表的区间，
-# start_lst,end_lst = freqSegment(freq_file)
+k = 8   # 系数，在psd结果中取对应倍频分段表的区间，
+start_lst,end_lst = freqSegment(freq_file)
 
 area_all = []  # 用来存储最终的分段积分结果
 
-# for i in start_lst:
-# 	# 单段的积分
-# 	area = 0
-# 	# int 是向下取整，经观察，要加1个才刚好
-# 	# start = int(start_lst[i]*k)+1
-# 	# end = int(end_lst[i]*k)+1
-# 	area = myIntegration(start,end,ypsd)
-# 	area_all.append(area)
+for i in range(len(start_lst)):
+	# 单段的积分
+	area = 0
+	# int 是向下取整，经观察，要加1个才刚好
+	start = int(start_lst[i]*k)+1
+	end = int(end_lst[i]*k)+1
+	area = myIntegration(start,end,ypsd)
+	area_all.append(area)
 
 
 # 测试，71-90段的最后结果是否约等于，未滤波LMS计算PSD后，1.39e-06
 # 单段的积分
-area = 0
-# int 是向下取整，经观察，要加1个才刚好
-start = int(71*k)
-end = int(90*k)
+# area = 0
+# # int 是向下取整，经观察，要加1个才刚好
+# start = int(71*k)
+# end = int(90*k)
 
-area = myIntegration(start,end,ypsd)
-area_all.append(area)
+# area = myIntegration(start,end,ypsd)
+# area_all.append(area)    # [1.617325e-05]
 
 print(area_all)
-=======
-# 读文件开始
-def myInput(file_name):
-	df = pd.read_excel(file_name,usecols=[3,4]) # 读取指定列（第4,5列）
-	x = list(df.iloc[0:,0])  # 剔除标题行，取横坐标-时间
-	y = list(df.iloc[0:,1])  # 剔除标题行，取纵坐标-加速度
-	myPlot(x,y)
-
-
-
-
-
-# 全局变量
-file_name = r'C:\Users\user\Desktop\汽车平顺性试验方法\加速度数据\123458#7Waveform_0.125s.XLS'
-
-myInput(file_name)
->>>>>>> e912e6a7b28364871a6048b3dfba01376a32bb78
-
+print(len(area_all))
 
 
